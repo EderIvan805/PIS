@@ -8,8 +8,8 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 db.init_app(app)
 
-app.register_blueprint(bp_def_anio, url_prefix='/api')
-app.register_blueprint(bp_nac_si_no, url_prefix='/api')
+app.register_blueprint(bp_def_anio, url_prefix='/PIS')
+app.register_blueprint(bp_nac_si_no, url_prefix='/PIS')
 
 # Manejo de errores
 @app.errorhandler(404)
