@@ -2,7 +2,7 @@ from db import db
 
 class CtDef_Ocurrio_Trabajo(db.Model):
     __tablename__ = 'CtDef_Ocurrio_Trabajo'
-    Cve = db.Column(db.TinyInteger, primary_key=True)
+    Cve = db.Column(db.SmallInteger, primary_key=True)
     Descrip = db.Column(db.String(60), nullable=False)
 
     def to_dict(self):

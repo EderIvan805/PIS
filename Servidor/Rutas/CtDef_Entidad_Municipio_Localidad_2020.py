@@ -25,8 +25,8 @@ def obtener_entidades_municipios_localidades_2020():
 
         def_entidadMunicipioLocalidad_2020 = query.all()
 
-        entidadMunicipioLocalidad_2020 = [entidadMunicipioLocalidad_2020.to_dict() for entidadMunicipioLocalidad_2020 in def_entidadMunicipioLocalidad_2020]
-        return jsonify({'Entidaddes, municipios y localidades': entidadMunicipioLocalidad_2020}), 200
+        entidadMunicipioLocalidad_2020_dict = [entidadMunicipioLocalidad_2020.to_dict() for entidadMunicipioLocalidad_2020 in def_entidadMunicipioLocalidad_2020]
+        return jsonify({'Entidaddes, municipios y localidades': entidadMunicipioLocalidad_2020_dict}), 200
     except SQLAlchemyError as db_error:
         return jsonify({'error': 'Error de conexión a la base de datos: ' + str(db_error)}), 500
     except pyodbc.OperationalError as connection_error:

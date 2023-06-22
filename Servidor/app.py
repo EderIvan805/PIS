@@ -27,10 +27,53 @@ from Rutas.CtDef_Mes import bp_def_mes
 from Rutas.CtDef_Minuto import bp_def_minuto
 from Rutas.CtDef_Nacionalidad import bp_def_nacionalidad
 from Rutas.CtDef_Necropsia import bp_def_necropsia
+from Rutas.CtDef_Ocupacion import bp_def_ocupacion
+from Rutas.CtDef_Ocurrio_Trabajo import bp_def_ocurrio_trabajo
+from Rutas.CtDef_Parentesco_Agresor import bp_def_parentesco_agresor
+from Rutas.CtDef_Presunta_Defuncion_Violenta import bp_def_presunta_defuncion_violenta
+from Rutas.CtDef_Razon_Materna import bp_def_razon_materna
+from Rutas.CtDef_Relacion_Con_Embarazo import bp_def_relacion_embarazo
+from Rutas.CtDef_Sexo import bp_def_sexo
+from Rutas.CtDef_Sitio_Ocurrencia import bp_def_sitio_ocurrencia
+from Rutas.CtDef_Tamaño_Localidad import bp_def_tamaño_localidad
+from Rutas.CtDef_Violencia_Familiar import bp_def_violencia_familiar
+from Rutas.CtNac_Afiliacion_Certificados import bp_nac_afiliacion_certificados
+from Rutas.CtNac_Condicion_Hijo_Anterior import bp_nac_condicion_hijo_anterior
+from Rutas.CtNac_Entidades import bp_nac_entidades
+from Rutas.CtNac_Escolaridad import bp_nac_escolaridad
+from Rutas.CtNac_Estado_Conyugal import bp_nac_estado_conyugal
+from Rutas.CtNac_Localidades_202203_2 import bp_nac_localidades_202203_2
+from Rutas.CtNac_Lugar_Nacimiento import bp_nac_lugar_nacimiento
+from Rutas.CtNac_Municipios202201_2 import bp_nac_municipios_202201_2
+from Rutas.CtNac_Nacimiento_Certificado_Por import bp_nac_nacimiento_certificado_por
+from Rutas.CtNac_Ocupacion_Habitual import bp_nac_ocupacion_habitual
+from Rutas.CtNac_Persona_Atendio_Parto import bp_nac_persona_atendio_parto
+from Rutas.CtNac_Producto_Embarazo import bp_nac_producto_embarazo
+from Rutas.CtNac_Resolucion_Embarazo import bp_nac_resolucion_embarazo
+from Rutas.CtNac_Sexo import bp_nac_sexo
+from Rutas.CtNac_Tipo_Cesarea import bp_nac_tipo_cesarea
+from Rutas.CtNac_Tipo_Medico import bp_nac_tipo_medico
+from Rutas.CtNac_Trimestre_Primer_Consulta import bp_nac_trimestre_primer_consulta
+from Rutas.CtNac_Utilizo_Forceps import bp_nac_utilizo_forceps
+from Rutas.Indicadores_Entidad_Residencia_2020 import bp_indicadores_entidad_residencia_2020
+from Rutas.Indicadores_Entidad_Residencia_2021 import bp_indicadores_entidad_residencia_2021
+from Rutas.Indicadores_Municipio_Residencia_2020 import bp_indicadores_municipio_residencia_2020
+from Rutas.Indicadores_Municipio_Residencia_2021 import bp_indicadores_municipio_residencia_2021
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 db.init_app(app)
+
+# Decorador @app.after_request
+@app.after_request
+def after_request(response):
+    response.headers['Content-Type'] = 'text/html; charset=utf-8'
+    return response
+
+#BLUEPRINTS QUE FALTAN Y SE DEJAN AL FINAL
+#ConjuntoDefunciones2020
+#ConjuntoDefunciones2021
+#CtNac_Establecimiento_Salud_202204
 
 app.register_blueprint(bp_def_anio, url_prefix='/PIS')
 app.register_blueprint(bp_nac_si_no, url_prefix='/PIS')
@@ -58,6 +101,38 @@ app.register_blueprint(bp_def_mes, url_prefix='/PIS')
 app.register_blueprint(bp_def_minuto, url_prefix='/PIS')
 app.register_blueprint(bp_def_nacionalidad, url_prefix='/PIS')
 app.register_blueprint(bp_def_necropsia, url_prefix='/PIS')
+app.register_blueprint(bp_def_ocupacion, url_prefix='/PIS')
+app.register_blueprint(bp_def_ocurrio_trabajo, url_prefix='/PIS')
+app.register_blueprint(bp_def_parentesco_agresor, url_prefix='/PIS')
+app.register_blueprint(bp_def_presunta_defuncion_violenta, url_prefix='/PIS')
+app.register_blueprint(bp_def_razon_materna, url_prefix='/PIS')
+app.register_blueprint(bp_def_relacion_embarazo, url_prefix='/PIS')
+app.register_blueprint(bp_def_sexo, url_prefix='/PIS')
+app.register_blueprint(bp_def_sitio_ocurrencia, url_prefix='/PIS')
+app.register_blueprint(bp_def_tamaño_localidad, url_prefix='/PIS')
+app.register_blueprint(bp_def_violencia_familiar, url_prefix='/PIS')
+app.register_blueprint(bp_nac_afiliacion_certificados, url_prefix='/PIS')
+app.register_blueprint(bp_nac_condicion_hijo_anterior, url_prefix='/PIS')
+app.register_blueprint(bp_nac_entidades, url_prefix='/PIS')
+app.register_blueprint(bp_nac_escolaridad, url_prefix='/PIS')
+app.register_blueprint(bp_nac_estado_conyugal, url_prefix='/PIS')
+app.register_blueprint(bp_nac_localidades_202203_2, url_prefix='/PIS')
+app.register_blueprint(bp_nac_lugar_nacimiento, url_prefix='/PIS')
+app.register_blueprint(bp_nac_municipios_202201_2, url_prefix='/PIS')
+app.register_blueprint(bp_nac_nacimiento_certificado_por, url_prefix='/PIS')
+app.register_blueprint(bp_nac_ocupacion_habitual, url_prefix='/PIS')
+app.register_blueprint(bp_nac_persona_atendio_parto, url_prefix='/PIS')
+app.register_blueprint(bp_nac_producto_embarazo, url_prefix='/PIS')
+app.register_blueprint(bp_nac_resolucion_embarazo, url_prefix='/PIS')
+app.register_blueprint(bp_nac_sexo, url_prefix='/PIS')
+app.register_blueprint(bp_nac_tipo_cesarea, url_prefix='/PIS')
+app.register_blueprint(bp_nac_tipo_medico, url_prefix='/PIS')
+app.register_blueprint(bp_nac_trimestre_primer_consulta, url_prefix='/PIS')
+app.register_blueprint(bp_nac_utilizo_forceps, url_prefix='/PIS')
+app.register_blueprint(bp_indicadores_entidad_residencia_2020, url_prefix='/PIS')
+app.register_blueprint(bp_indicadores_entidad_residencia_2021, url_prefix='/PIS')
+app.register_blueprint(bp_indicadores_municipio_residencia_2020, url_prefix='/PIS')
+app.register_blueprint(bp_indicadores_municipio_residencia_2021, url_prefix='/PIS')
 
 # Manejo de errores
 @app.errorhandler(404)

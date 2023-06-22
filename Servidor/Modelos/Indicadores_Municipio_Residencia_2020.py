@@ -2,9 +2,9 @@ from db import db
 
 class Indicadores_Municipio_Residencia_2020(db.Model):
     __tablename__ = 'Indicadores_Municipio_Residencia_2020'
-    Entidad_Res = db.Column(db.SmallInteger, nullable=True)
+    Entidad_Res = db.Column(db.SmallInteger, primary_key =True)
     Descripcion_Ent_Res = db.Column(db.String(100), nullable=True)
-    Municipio_Res = db.Column(db.SmallInteger, nullable=True)
+    Municipio_Res = db.Column(db.SmallInteger, primary_key =True)
     Descripcion_Mun_Res = db.Column(db.String(100), nullable=True)
     Nacimientos_Anio = db.Column(db.Integer, nullable=True)
     Total_Defunciones_Menores1 = db.Column(db.Integer, nullable=True)
