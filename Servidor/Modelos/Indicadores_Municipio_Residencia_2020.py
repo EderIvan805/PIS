@@ -1,14 +1,19 @@
 from db import db
+from sqlalchemy import PrimaryKeyConstraint
 
 class Indicadores_Municipio_Residencia_2020(db.Model):
     __tablename__ = 'Indicadores_Municipio_Residencia_2020'
-    Entidad_Res = db.Column(db.SmallInteger, primary_key =True)
+    Entidad_Res = db.Column(db.SmallInteger, nullable=False)
     Descripcion_Ent_Res = db.Column(db.String(100), nullable=True)
-    Municipio_Res = db.Column(db.SmallInteger, primary_key =True)
+    Municipio_Res = db.Column(db.SmallInteger, nullable=False)
     Descripcion_Mun_Res = db.Column(db.String(100), nullable=True)
     Nacimientos_Anio = db.Column(db.Integer, nullable=True)
     Total_Defunciones_Menores1 = db.Column(db.Integer, nullable=True)
     Tasa_Mortalidad_Infantil = db.Column(db.Float, nullable=True)
+
+    __table_args__ = (
+        PrimaryKeyConstraint('Entidad_Res', 'Municipio_Res'),
+    )
 
     def to_dict(self):
         return {

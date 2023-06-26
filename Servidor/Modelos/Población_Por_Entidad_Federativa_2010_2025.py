@@ -1,9 +1,10 @@
 from db import db
+from sqlalchemy import PrimaryKeyConstraint
 
 class PoblacionPorEntidadFederativa2010_2025(db.Model):
     __tablename__ = 'Población_Por_Entidad_Federativa_2010_2025'
-    Anio = db.Column(db.SmallInteger, primary_key=True)
-    Clave_EntFed = db.Column(db.SmallInteger, primary_key=True)
+    Anio = db.Column(db.SmallInteger, nullable=False)
+    Clave_EntFed = db.Column(db.SmallInteger, nullable=False)
     Entidad_federativa = db.Column(db.String(60), nullable=False)
     Men_1_H = db.Column(db.Integer, nullable=False)
     H_1_4 = db.Column(db.Integer, nullable=False)
@@ -43,6 +44,10 @@ class PoblacionPorEntidadFederativa2010_2025(db.Model):
     M_75_79 = db.Column(db.Integer, nullable=False)
     M_80_84 = db.Column(db.Integer, nullable=False)
     M_85yMas = db.Column(db.Integer, nullable=False)
+
+    __table_args__ = (
+        PrimaryKeyConstraint('Anio', 'Clave_EntFed'),
+    )
 
     def to_dict(self):
         return {

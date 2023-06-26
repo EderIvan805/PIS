@@ -2,7 +2,7 @@ from db import db
 
 class NacimientosPorEntRes2020(db.Model):
     __tablename__ = 'Nacimientos_Por_Ent_Res_2020'
-    Ent_Fed = db.Column(db.TinyInteger, primary_key=True)
+    Ent_Fed = db.Column(db.SmallInteger, primary_key=True)
     Total_Nacimientos = db.Column(db.Integer)
 
     def to_dict(self):

@@ -16,9 +16,9 @@ def obtener_municipios_202201():
 
         # Agregar los filtros si los parámetros están presentes
         if Clave_Ent:
-            query = query.filter_by(Cve_Ent=Clave_Ent)
+            query = query.filter_by(Clave_Ent=Clave_Ent)
         if Clave_Mpo:
-            query = query.filter_by(Cve_Mun=Clave_Mpo)
+            query = query.filter_by(Clave_Mpo=Clave_Mpo)
 
         nac_municipios202201 = query.all()
 

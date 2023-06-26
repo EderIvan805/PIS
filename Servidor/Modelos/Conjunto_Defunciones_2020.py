@@ -2,16 +2,17 @@ from db import db
 
 class ConjuntoDeDatosDefuncionesRegistrados2020(db.Model):
     __tablename__ = 'Conjunto_De_Datos_Defunciones_Registrados_2020'
-    Ent_regis = db.Column(db.SmallInteger, primary_key=True)
-    Mun_regis = db.Column(db.SmallInteger, primary_key=True)
-    Ent_resid = db.Column(db.SmallInteger, primary_key=True)
-    Mun_resid = db.Column(db.SmallInteger, primary_key=True)
-    Tloc_resid = db.Column(db.SmallInteger, primary_key=True)
-    Loc_resid = db.Column(db.SmallInteger, primary_key=True)
-    Ent_ocurr = db.Column(db.SmallInteger, primary_key=True)
-    Mun_ocurr = db.Column(db.SmallInteger, primary_key=True)
-    Tloc_ocurr = db.Column(db.SmallInteger, primary_key=True)
-    Loc_ocurr = db.Column(db.SmallInteger, primary_key=True)
+    IdDefuncion = db.Column(db.Integer, primary_key=True)
+    Ent_regis = db.Column(db.SmallInteger, nullable=False)
+    Mun_regis = db.Column(db.SmallInteger, nullable=False)
+    Ent_resid = db.Column(db.SmallInteger, nullable=False)
+    Mun_resid = db.Column(db.SmallInteger, nullable=False)
+    Tloc_resid = db.Column(db.SmallInteger, nullable=False)
+    Loc_resid = db.Column(db.SmallInteger, nullable=False)
+    Ent_ocurr = db.Column(db.SmallInteger, nullable=False)
+    Mun_ocurr = db.Column(db.SmallInteger, nullable=False)
+    Tloc_ocurr = db.Column(db.SmallInteger, nullable=False)
+    Loc_ocurr = db.Column(db.SmallInteger, nullable=False)
     Causa_def = db.Column(db.String(50), nullable=False)
     Lista_mex = db.Column(db.String(50), nullable=False)
     Sexo = db.Column(db.SmallInteger, nullable=False)
@@ -42,7 +43,7 @@ class ConjuntoDeDatosDefuncionesRegistrados2020(db.Model):
     Horas = db.Column(db.SmallInteger, nullable=False)
     Minutos = db.Column(db.SmallInteger, nullable=False)
     Capitulo = db.Column(db.SmallInteger, nullable=False)
-    Grupo = db.Column(db.SmallInteger)
+    Grupo = db.Column(db.SmallInteger,nullable=False)
     Lista1 = db.Column(db.SmallInteger, nullable=False)
     Gr_lismex = db.Column(db.String(20), nullable=False)
     Vio_fami = db.Column(db.SmallInteger, nullable=False)
@@ -63,8 +64,35 @@ class ConjuntoDeDatosDefuncionesRegistrados2020(db.Model):
     Dis_re_oax = db.Column(db.SmallInteger, nullable=False)
     Edad_descodificada = db.Column(db.SmallInteger)
 
+     # Agregar las relaciones ForeignKey para las llaves foráneas
+    ocurrencia = db.relationship('CtDef_Entidad_Municipio_Localidad_2020',
+                                primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Ent_ocurr==CtDef_Entidad_Municipio_Localidad_2020.Cve_Ent, ConjuntoDeDatosDefuncionesRegistrados2020.Mun_ocurr==CtDef_Entidad_Municipio_Localidad_2020.Cve_Mun, ConjuntoDeDatosDefuncionesRegistrados2020.Loc_ocurr==CtDef_Entidad_Municipio_Localidad_2020.Cve_Loc)",
+                                foreign_keys=[Ent_ocurr, Mun_ocurr, Loc_ocurr])
+
+    
+    residencia = db.relationship('CtDef_Entidad_Municipio_Localidad_2020',
+                                primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Ent_resid==CtDef_Entidad_Municipio_Localidad_2020.Cve_Ent, ConjuntoDeDatosDefuncionesRegistrados2020.Mun_resid==CtDef_Entidad_Municipio_Localidad_2020.Cve_Mun, ConjuntoDeDatosDefuncionesRegistrados2020.Loc_resid==CtDef_Entidad_Municipio_Localidad_2020.Cve_Loc)",
+                                foreign_keys=[Ent_resid, Mun_resid, Loc_resid])
+    
+    capitulo = db.relationship('CtDef_Capitulo_Grupo',
+                               primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Capitulo==CtDef_Capitulo_Grupo.Cap, ConjuntoDeDatosDefuncionesRegistrados2020.Grupo==CtDef_Capitulo_Grupo.Gpo)",
+                               foreign_keys = [Capitulo, Grupo])
+    
+    causa = db.relationship('CtDef_Causa_Defuncion',
+                            primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Causa_def==CtDef_Causa_Defuncion.Cve)",
+                            foreign_keys = [Causa_def])
+    
+    ocupacion = db.relationship('CtDef_Ocupacion',
+                                primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Ocupacion==CtDef_Ocupacion.Cve)",
+                                foreign_keys=[Ocupacion])
+    
+    parentesco = db.relationship('CtDef_Parentesco_Agresor',
+                                primaryjoin="and_(ConjuntoDeDatosDefuncionesRegistrados2020.Par_agre==CtDef_Parentesco_Agresor.Cve)",
+                                foreign_keys = [Par_agre])
+
     def to_dict(self):
         return {
+            'IdDefuncion': self.IdDefuncion,
             'Ent_regis': self.Ent_regis,
             'Mun_regis': self.Mun_regis,
             'Ent_resid': self.Ent_resid,

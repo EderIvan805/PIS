@@ -2,6 +2,7 @@ from db import db
 
 class ConjuntoDeDatosDefuncionesRegistrados2021(db.Model):
     __tablename__ = 'Conjunto_De_Datos_Defunciones_Registrados_2021'
+    IdDefuncion = db.Column(db.Integer, primary_key=True)
     Ent_regis = db.Column(db.SmallInteger, primary_key=True)
     Mun_regis = db.Column(db.SmallInteger, primary_key=True)
     Ent_resid = db.Column(db.SmallInteger, primary_key=True)
@@ -65,6 +66,7 @@ class ConjuntoDeDatosDefuncionesRegistrados2021(db.Model):
 
     def to_dict(self):
         return {
+            'IdDefuncion': self.IdDefuncion,
             'Ent_regis': self.Ent_regis,
             'Mun_regis': self.Mun_regis,
             'Ent_resid': self.Ent_resid,

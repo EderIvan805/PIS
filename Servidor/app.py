@@ -1,6 +1,8 @@
 from flask import Flask
 from config import *
 from db import db
+from Rutas.Conjunto_Defunciones_2020 import bp_defunciones_2020
+from Rutas.Conjunto_Defunciones_2021 import bp_defunciones_2021
 from Rutas.CtDef_Anio import bp_def_anio
 from Rutas.CtNac_Si_No import bp_nac_si_no
 from Rutas.CtDef_Area_Urbana_Rural import bp_def_areaUrbana
@@ -41,6 +43,7 @@ from Rutas.CtNac_Afiliacion_Certificados import bp_nac_afiliacion_certificados
 from Rutas.CtNac_Condicion_Hijo_Anterior import bp_nac_condicion_hijo_anterior
 from Rutas.CtNac_Entidades import bp_nac_entidades
 from Rutas.CtNac_Escolaridad import bp_nac_escolaridad
+from Rutas.CtNac_Establecimiento_Salud_202204 import bp_nac_establecimiento_salud
 from Rutas.CtNac_Estado_Conyugal import bp_nac_estado_conyugal
 from Rutas.CtNac_Localidades_202203_2 import bp_nac_localidades_202203_2
 from Rutas.CtNac_Lugar_Nacimiento import bp_nac_lugar_nacimiento
@@ -59,6 +62,13 @@ from Rutas.Indicadores_Entidad_Residencia_2020 import bp_indicadores_entidad_res
 from Rutas.Indicadores_Entidad_Residencia_2021 import bp_indicadores_entidad_residencia_2021
 from Rutas.Indicadores_Municipio_Residencia_2020 import bp_indicadores_municipio_residencia_2020
 from Rutas.Indicadores_Municipio_Residencia_2021 import bp_indicadores_municipio_residencia_2021
+from Rutas.Nacimientos_Entidad_Residencia_ocurridos_2020 import bp_nacimientos_entidad_residencia_2020
+from Rutas.Nacimientos_Municipio_Residencia_ocurridos_2020 import bp_nacimientos_municipio_residencia_2020
+from Rutas.Nacimientos_Municipio_Residencia_ocurridos_2021 import bp_nacimientos_municipio_residencia_2021
+from Rutas.Nacimientos_Por_Ent_Res_2020 import bp_nacimientos_por_ent_res_2020
+from Rutas.Nacimientos_Por_Ent_Res_2021 import bp_nacimientos_por_ent_res_2021
+from Rutas.Poblacion_Municipios_2015_2030 import bp_poblacion_municipios_2015_2030
+from Rutas.Población_Por_Entidad_Federativa_2010_2025 import bp_poblacion_por_entidad_federativa_2010_2025
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -71,10 +81,11 @@ def after_request(response):
     return response
 
 #BLUEPRINTS QUE FALTAN Y SE DEJAN AL FINAL
-#ConjuntoDefunciones2020
-#ConjuntoDefunciones2021
-#CtNac_Establecimiento_Salud_202204
+#Nacimientos_ocurridos_2020
+#Nacimientos_ocurridos_2021
 
+app.register_blueprint(bp_defunciones_2020, url_prefix='/PIS')
+app.register_blueprint(bp_defunciones_2021, url_prefix='/PIS')
 app.register_blueprint(bp_def_anio, url_prefix='/PIS')
 app.register_blueprint(bp_nac_si_no, url_prefix='/PIS')
 app.register_blueprint(bp_def_areaUrbana, url_prefix='/PIS')
@@ -115,6 +126,7 @@ app.register_blueprint(bp_nac_afiliacion_certificados, url_prefix='/PIS')
 app.register_blueprint(bp_nac_condicion_hijo_anterior, url_prefix='/PIS')
 app.register_blueprint(bp_nac_entidades, url_prefix='/PIS')
 app.register_blueprint(bp_nac_escolaridad, url_prefix='/PIS')
+app.register_blueprint(bp_nac_establecimiento_salud, url_prefix='/PIS')
 app.register_blueprint(bp_nac_estado_conyugal, url_prefix='/PIS')
 app.register_blueprint(bp_nac_localidades_202203_2, url_prefix='/PIS')
 app.register_blueprint(bp_nac_lugar_nacimiento, url_prefix='/PIS')
@@ -133,6 +145,13 @@ app.register_blueprint(bp_indicadores_entidad_residencia_2020, url_prefix='/PIS'
 app.register_blueprint(bp_indicadores_entidad_residencia_2021, url_prefix='/PIS')
 app.register_blueprint(bp_indicadores_municipio_residencia_2020, url_prefix='/PIS')
 app.register_blueprint(bp_indicadores_municipio_residencia_2021, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_entidad_residencia_2020, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_municipio_residencia_2020, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_municipio_residencia_2021, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_por_ent_res_2020, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_por_ent_res_2021, url_prefix='/PIS')
+app.register_blueprint(bp_poblacion_municipios_2015_2030, url_prefix='/PIS')
+app.register_blueprint(bp_poblacion_por_entidad_federativa_2010_2025, url_prefix='/PIS')
 
 # Manejo de errores
 @app.errorhandler(404)
