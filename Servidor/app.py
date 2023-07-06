@@ -65,6 +65,8 @@ from Rutas.Indicadores_Municipio_Residencia_2021 import bp_indicadores_municipio
 from Rutas.Nacimientos_Entidad_Residencia_ocurridos_2020 import bp_nacimientos_entidad_residencia_2020
 from Rutas.Nacimientos_Municipio_Residencia_ocurridos_2020 import bp_nacimientos_municipio_residencia_2020
 from Rutas.Nacimientos_Municipio_Residencia_ocurridos_2021 import bp_nacimientos_municipio_residencia_2021
+from Rutas.Nacimientos_ocurridos_2020 import bp_nacimientos_ocurridos_2020
+from Rutas.Nacimientos_ocurridos_2021 import bp_nacimientos_ocurridos_2021
 from Rutas.Nacimientos_Por_Ent_Res_2020 import bp_nacimientos_por_ent_res_2020
 from Rutas.Nacimientos_Por_Ent_Res_2021 import bp_nacimientos_por_ent_res_2021
 from Rutas.Poblacion_Municipios_2015_2030 import bp_poblacion_municipios_2015_2030
@@ -79,10 +81,6 @@ db.init_app(app)
 def after_request(response):
     response.headers['Content-Type'] = 'text/html; charset=utf-8'
     return response
-
-#BLUEPRINTS QUE FALTAN Y SE DEJAN AL FINAL
-#Nacimientos_ocurridos_2020
-#Nacimientos_ocurridos_2021
 
 app.register_blueprint(bp_defunciones_2020, url_prefix='/PIS')
 app.register_blueprint(bp_defunciones_2021, url_prefix='/PIS')
@@ -148,6 +146,8 @@ app.register_blueprint(bp_indicadores_municipio_residencia_2021, url_prefix='/PI
 app.register_blueprint(bp_nacimientos_entidad_residencia_2020, url_prefix='/PIS')
 app.register_blueprint(bp_nacimientos_municipio_residencia_2020, url_prefix='/PIS')
 app.register_blueprint(bp_nacimientos_municipio_residencia_2021, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_ocurridos_2020, url_prefix='/PIS')
+app.register_blueprint(bp_nacimientos_ocurridos_2021, url_prefix='/PIS')
 app.register_blueprint(bp_nacimientos_por_ent_res_2020, url_prefix='/PIS')
 app.register_blueprint(bp_nacimientos_por_ent_res_2021, url_prefix='/PIS')
 app.register_blueprint(bp_poblacion_municipios_2015_2030, url_prefix='/PIS')

@@ -11,11 +11,14 @@ def obtener_defunciones_2020():
         query = ConjuntoDeDatosDefuncionesRegistrados2020.query
 
         # Obtener los valores de los parámetros de solicitud
+        Causa_def = request.args.get('Causa_def')
         Ent_ocurr = request.args.get('Ent_ocurr')
         Mun_ocurr = request.args.get('Mun_ocurr')
         Loc_ocurr = request.args.get('Loc_ocurr')
 
         # Agregar los filtros si los parámetros están presentes
+        if Causa_def:
+            query = query.filter_by(Causa_def=Causa_def)
         if Ent_ocurr:
             query = query.filter_by(Ent_ocurr=Ent_ocurr)
         if Mun_ocurr:

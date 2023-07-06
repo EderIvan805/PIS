@@ -42,7 +42,7 @@ class CtNac_Establecimiento_Salud_202204(db.Model):
     Entre_Tipo_Vialidad_2 = db.Column(db.String(100))
     Entre_Vialidad_2 = db.Column(db.String(100))
     Observaciones_Direccion = db.Column(db.String(500))
-    Codico_Postal = db.Column(db.Integer)
+    Codigo_Postal = db.Column(db.Integer)
     Estatus_Operacion = db.Column(db.String(50), nullable=False)
     Clave_Estatus_Operacion = db.Column(db.SmallInteger, nullable=False)
     Tiene_Licencia_Sanitaria = db.Column(db.String(50))
@@ -127,7 +127,7 @@ class CtNac_Establecimiento_Salud_202204(db.Model):
             'Entre_Tipo_Vialidad_2': self.Entre_Tipo_Vialidad_2,
             'Entre_Vialidad_2': self.Entre_Vialidad_2,
             'Observaciones_Direccion': self.Observaciones_Direccion,
-            'Codico_Postal': self.Codico_Postal,
+            'Codigo_Postal': self.Codigo_Postal,
             'Estatus_Operacion': self.Estatus_Operacion,
             'Clave_Estatus_Operacion': self.Clave_Estatus_Operacion,
             'Tiene_Licencia_Sanitaria': self.Tiene_Licencia_Sanitaria,

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cliente Power BI</title>
+  <link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Plataforma de Información de Salud</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li>
+          <a href="#">Visualizaciones</a>
+          <ul>
+            <li><a href="#">Indicadores</a></li>
+            <li><a href="#">Entidad</a></li>
+            <li><a href="#">Comparación</a></li>
+            <li><a href="#">Tendencias</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Sobre los datos</a></li>
+        <li>
+          <a href="#">Documentación</a>
+          <ul>
+            <li><a href="#">Glosario</a></li>
+            <li><a href="#">Ficha técnica</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="language-buttons">
+      <a href="#"><img class="flag" src="mexico-flag.png" alt="Español"></a>
+      <a href="#"><img class="flag" src="usa-flag.png" alt="English"></a>
+    </div>
+    
+  </header>
+  <div id="container">
+    <iframe id="powerBiIframe" title="Conjunto defunciones 2020 - prueba" width="80%" height="80%" src="https://app.powerbi.com/view?r=eyJrIjoiNDUyNjBkZTktMmM1MC00Y2YwLTk3MGUtNzgxN2Y4NWJlOWQ5IiwidCI6IjNjOTA3NjUxLWQ4YzYtNGNhNi1hOGE0LTZhMjQyNDMwZTY1MyIsImMiOjR9&chromeless=true" frameborder="0" allowFullScreen="true"></iframe>
+  </div>
+  <button onclick="descargarInforme()">Descargar informe</button>
+  <script src="../JavaScript/FileSaver.js"></script>
+  <script src="../JavaScript/powerbi.js"></script>
+  <script src="../JavaScript/script.js"></script>
+</body>
+</html>
+
+
